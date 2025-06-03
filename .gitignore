@@ -1,0 +1,12 @@
+# Ignore Python environment files and caches
+*.pyc
+__pycache__/
+
+# Ignore virtual environment folder
+claude-env/
+
+# Ignore environment variables file
+.env
+
+# Ignore output files
+output/
