@@ -13,18 +13,23 @@ api_key = os.environ.get("ANTHROPIC-API-KEY")
 # Create an Anthropic client instance with the API key
 client = anthropic.Anthropic(api_key=api_key)
 
-response = client.messages.create(
-    model="claude-3-opus-20240229",
-    max_tokens=4096,
-    tools=[structured_output_translation],
-    tool_choice={"type": "tool", "name": "translation"},
-    messages=[{"role": "user", "content": "Baby"}],
-)
 
-response
+def get_translations(word: str):
+    response = client.messages.create(
+        model="claude-3-opus-20240229",
+        max_tokens=4096,
+        tools=[structured_output_translation],
+        tool_choice={"type": "tool", "name": "translation"},
+        messages=[{"role": "user", "content": word}],
+    )
 
-for content in response.content:
-    print(content)
-    if content.type == "tool_use" and content.name == "translation":
-        result_json = json.dumps(content.input, indent=2, ensure_ascii=False)
-        print(result_json)
+    response
+
+    for content in response.content:
+        print(content)
+        if content.type == "tool_use" and content.name == "translation":
+            result_json = json.dumps(content.input, indent=2, ensure_ascii=False)
+            print(result_json)
+
+
+get_translations("avocado")
