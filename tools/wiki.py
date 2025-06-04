@@ -28,3 +28,17 @@ def add_to_research_reading_file(articles, topic):
 generate_wikipedia_reading_list(
     "Machine Learning", ["Artificial Intelligence", "Machine Learning", "Deep Learning"]
 )
+
+
+def get_article(search_terms):
+    article_list = []
+    for search_term in search_terms:
+        results = wikipedia.search(search_term)
+        first_result = results[0]
+        page = wikipedia.page(first_result, auto_suggest=False)
+        content = page.content
+        article_list.append(content)
+    return article_list
+
+
+get_article(["broccoli", "Ben stiller"])

@@ -93,4 +93,4 @@ def get_research_help(title, n):
         print(response.content[0].text)
 
 
-get_research_help("Interesting cities in Norway.", 3)
+get_research_help("Drottningholm", 3)

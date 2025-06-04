@@ -1,5 +1,5 @@
 from . import calculator
-from .wiki import generate_wikipedia_reading_list
+from .wiki import generate_wikipedia_reading_list, get_article
 
 calculator_tool = {
     "name": "calculator",
@@ -41,5 +41,31 @@ wiki_tool = {
     },
 }
 
+get_article_tool = {
+    "name": "get_article",
+    "description": "A tool to retrieve one or more updated Wikipedia articles.",
+    "input_schema": {
+        "type": "object",
+        "properties": {
+            "n_of_articles": {
+                "type": "string",
+                "description": "Number of articles to retrieve.",
+            },
+            "article_titles": {
+                "type": "array",
+                "description": "The titles of the articles to retrieve.",
+                "items": {
+                    "type": "string",
+                },
+            },
+        },
+        "required": ["search_term"],
+    },
+}
 
-tool_functions = {"calculator": calculator, "wiki": generate_wikipedia_reading_list}
+
+tool_functions = {
+    "calculator": calculator,
+    "wiki": generate_wikipedia_reading_list,
+    "get_article": get_article,
+}
